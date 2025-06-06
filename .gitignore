@@ -1,0 +1,100 @@
+# === Archivos de Configuración Sensibles ===
+config.env
+.env
+*.env.local
+*.env.production
+
+# === Logs y Archivos Temporales ===
+*.log
+logs/
+log/
+*.log.*
+sync_log_*.log
+
+# === Entornos Virtuales Python ===
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# === Cache y Compilados Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# === Archivos de Respaldo ===
+backups/
+backup_*
+*.bak
+*.backup
+*.sql.backup
+
+# === Archivos de Sistema ===
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# === IDEs y Editores ===
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vim/
+.emacs.d/
+
+# === Docker (mantener compose y Dockerfile) ===
+.docker/
+
+# === Archivos de Testing ===
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# === Jupyter Notebooks ===
+.ipynb_checkpoints
+
+# === Archivos temporales específicos del proyecto ===
+temp/
+tmp/
+*.tmp
+check_*.py
+test_*.py
+list_*.py
+fix_*.py
+
+# === Archivos de conexión temporal ===
+freetds.conf 

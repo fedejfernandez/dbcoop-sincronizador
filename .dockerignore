@@ -1,0 +1,55 @@
+# Ignorar archivos no necesarios en la imagen Docker
+.git
+.gitignore
+README.md
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.DS_Store
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs y archivos temporales
+logs/
+*.log
+sync_log_*.log
+cron.log
+backups/
+crontab_backup.txt
+
+# Archivos de configuración local (se montan como volumen)
+config.env.local
+.env.local
+
+# Archivos de prueba
+test_connection.py
+test_mariadb.py
+test_sqlserver_simple.py
+
+# Scripts de instalación local
+install.sh
+setup_cron.sh
+
+# Archivos Docker
+.dockerignore
+docker-compose.override.yml
+
+# Archivos FreeTDS temporales
+freetds.conf
+msodbcsql17_*.deb 

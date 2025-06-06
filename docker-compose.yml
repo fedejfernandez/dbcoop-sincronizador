@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  dbcoop-sync:
+    build: .
+    container_name: dbcoop-syncronizer
+    restart: unless-stopped
+    
+    # Configuración de red para acceder a las bases de datos
+    network_mode: host
+    
+    # Variables de entorno (puedes sobreescribir las del config.env)
+    environment:
+      - TZ=America/Mexico_City
+      - PYTHONUNBUFFERED=1
+    
+    # Montar volúmenes para persistencia
+    volumes:
+      # Persistir logs
+      - ./logs:/app/logs
+      # Permitir edición de configuración sin rebuild
+      - ./config.env:/app/config.env:ro
+      # Persistir crontab backup si se usa
+      - ./backups:/app/backups
+    
+    # Comando por defecto (puedes cambiarlo)
+    command: ["python", "db_sync.py", "schedule"]
+    
+    # Configurar para que se reinicie en caso de error
+    depends_on: []
+    
+    # Healthcheck para monitorear el contenedor
+    healthcheck:
+      test: ["CMD", "python", "db_sync.py", "test"]
+      interval: 30m
+      timeout: 30s
+      retries: 3
+      start_period: 10s
+
+  # Servicio alternativo para ejecución manual
+  dbcoop-manual:
+    build: .
+    container_name: dbcoop-manual
+    network_mode: host
+    profiles: ["manual"]
+    
+    environment:
+      - TZ=America/Mexico_City
+      - PYTHONUNBUFFERED=1
+    
+    volumes:
+      - ./logs:/app/logs
+      - ./config.env:/app/config.env:ro
+      - ./backups:/app/backups
+    
+    # Este servicio se ejecuta manualmente
+    command: ["python", "db_sync.py", "sync"]
+
+  # Servicio para testing
+  dbcoop-test:
+    build: .
+    container_name: dbcoop-test
+    network_mode: host
+    profiles: ["test"]
+    
+    environment:
+      - TZ=America/Mexico_City
+      - PYTHONUNBUFFERED=1
+    
+    volumes:
+      - ./logs:/app/logs
+      - ./config.env:/app/config.env:ro
+    
+    command: ["python", "db_sync.py", "test"] 
